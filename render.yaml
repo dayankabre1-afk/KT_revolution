@@ -1,0 +1,29 @@
+# Démo gratuite sur Render : Render > New > Blueprint > choisis ce dépôt.
+# ATTENTION : l'offre gratuite n'a pas de disque. Comptes, commandes et modifications faites dans /admin
+# sont effacés à chaque redémarrage ou nouvelle mise en ligne. Parfait pour une démo, pas pour de vrais clients.
+services:
+  - type: web
+    name: kt-revolution
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/config
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        sync: false        # Render te le demande au déploiement (8 caractères minimum)
+      - key: STORE_NAME
+        value: KT REVOLUTION
+      - key: CURRENCY
+        value: FCFA
+      - key: WHATSAPP_NUMBER
+        sync: false        # facultatif : chiffres seulement, avec l'indicatif
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false        # facultatif
+      - key: TELEGRAM_CHAT_ID
+        sync: false        # facultatif : donné par /admin après « Lier Telegram »
